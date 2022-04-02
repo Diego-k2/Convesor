@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-
+//TODO: IMPLEMENTAR RESTO DOS METODOS
+//TODO: TENTAR REDUZIR O NUMERO DE METODOS 
+//TODO: ACHAR BUG DE OPÇÃO INVALIDA 
 namespace Atividade_M2
 {
     class Program
@@ -21,9 +23,11 @@ namespace Atividade_M2
                     switch (opInicial)
                     {
                         case 1: //CONVESOR DE MEDIDA
+                            Console.Clear();
                             converteMedida();
                             break;
                         case 2: //CONVERSOR DE MOEDAS
+                            Console.Clear();
                             converteMoeda();
                             break;
                         
@@ -31,18 +35,17 @@ namespace Atividade_M2
                 } else
                 {
                     Console.Clear();
-                    Console.WriteLine("OPÇÃO INVÁLIDA! \n \n");
+                    Console.WriteLine("OPÇÃO INVÁLIDA! \n");
                     inicio();
                 }
             } 
 
-            /*
-             * -----------------------------------(CONVERSOR DE MEDIDA)-------------------------------------------------
-             */
+/*
+* -----------------------------------(CONVERSOR DE MEDIDA)-------------------------------------------------
+*/
             
             static void converteMedida() //Função Conversora de Medidas
             {
-                Console.Clear();
                 Console.WriteLine("Você selecionou o conversor de medidas:");
                 Console.WriteLine("Selecione oque você deseja: \n 1)-Métricas \n 2)-Volumétricas " +
                                   "\n 3)-Volta ao menu anterior");
@@ -51,34 +54,34 @@ namespace Atividade_M2
                 {
                     switch (opMed)
                     {
-                        case 1: 
+                        case 1:
+                            Console.Clear();
                             metrica();
                             break;
                         case 2:
+                            Console.Clear();
                             volumetrica();
                             break;
                         case 3:
                             Console.Clear();
                             inicio();
                             break;
-                        default:
-                            Console.WriteLine("OPÇÃO INVALIDA!");
-                            break;
                     }
-                } else
+                } 
+                else
                 {
-                 Console.WriteLine("OPÇÃO INVÁLIDA ! \n \n"); 
-                 converteMedida();
+                    Console.Clear();
+                    Console.WriteLine("OPÇÃO INVÁLIDA ! \n"); 
+                    converteMedida();
                 }
             }
 
-            /*
-             * ----------------------------------PASSAR PARA UMA CLASSE--(CONVERSOR MEDIDA)-----------------------------
-             */
+/*
+* ----------------------------------PASSAR PARA UMA CLASSE--(CONVERSOR MEDIDA)-----------------------------
+*/
             
             static void volumetrica()
             {
-                Console.Clear();
                 Console.WriteLine("Conversões volumetricas");
                 Console.WriteLine("Seleciona a conversão desejada \n 1)-Litro para militro \n 2)-Militro para litro" +
                                   "\n 3)-Voltar ao menu anterior");
@@ -96,7 +99,9 @@ namespace Atividade_M2
                         converteMedida();
                         break;
                     default:
-                        Console.WriteLine("Opção inválida !");
+                        Console.Clear();
+                        Console.WriteLine("Opção inválida ! \n");
+                        volumetrica();
                         break;
                 }
                 
@@ -105,7 +110,6 @@ namespace Atividade_M2
 
             static void litroParaMilitro()
             {
-                Console.Clear();
                 Console.WriteLine("Litro para Militro");
                 Console.WriteLine("Digite o valor em Litros");
                 double medida = Double.Parse(Console.ReadLine());
@@ -118,11 +122,13 @@ namespace Atividade_M2
                     int opSair = Int32.Parse(Console.ReadLine());
                     if (opSair == 1)
                     {
+                        Console.Clear();
                         litroParaMilitro();
                     }
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Você Digitou um valor invalido !");
                     litroParaMilitro();
                 }
@@ -131,7 +137,6 @@ namespace Atividade_M2
 
             static void militroParaLitro()
             {
-                Console.Clear();
                 Console.WriteLine("Militro para Litro");
                 Console.WriteLine("Digite o valor em militros");
                 double medida = Double.Parse(Console.ReadLine());
@@ -145,24 +150,25 @@ namespace Atividade_M2
                     int opSair = Int32.Parse(Console.ReadLine());
                     if (opSair == 1)
                     {
+                        Console.Clear();
                         litroParaMilitro();
                     }
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Você Digitou um valor invalido !");
                     litroParaMilitro();
                 }
                 
             }
             
-            /*
-             * -----------------------------------PASSAR PARA UMA CLASSE--(CONVERSOR MEDIDA)----------------------------
-             */
+/*
+* -----------------------------------PASSAR PARA UMA CLASSE--(CONVERSOR MEDIDA)----------------------------
+*/
             
             static void metrica() //METRICA 
             {
-                Console.Clear();
                 Console.WriteLine("Conversões metricas:");
                 Console.WriteLine("Selecione a conversão desejada \n 1)-Metro para centimentro" +
                                   "\n 2)-Centimetro para metro \n 3)-Voltar menu anterior");
@@ -180,7 +186,9 @@ namespace Atividade_M2
                         converteMedida();
                         break;
                     default:
+                        Console.Clear();
                         Console.WriteLine("Opção inválida !");
+                        metrica();
                         break;
                 }
                 
@@ -234,14 +242,15 @@ namespace Atividade_M2
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Você Digitou um valor invalido !");
                     centimetroMetro();
                 }
 
-            }
-            /*
-             * ---------------------------------------CONVERTE MOEDA----------------------------------------------------
-             */
+            } 
+/*
+* ---------------------------------------CONVERTE MOEDA----------------------------------------------------
+*/
 
             static void converteMoeda()
             {
@@ -263,6 +272,7 @@ namespace Atividade_M2
                     }
                 } else
                 {
+                    Console.Clear();
                     Console.WriteLine("OPÇÃO INVÁLIDA ! \n \n"); 
                     converteMedida();
                 }              
@@ -300,7 +310,7 @@ namespace Atividade_M2
  /*
  * ----------------------------PASSAR PARA UMA CLASSE--------CONVERTE MOEDA---------------------------------------------
  */
-                static void dolarParaReal() //TERMINAR DE IMPLEMENTAR 
+                static void dolarParaReal()  
                 {
                     Console.Clear();
                     Console.WriteLine("Você selecionou a opção de converter Dolar para real");
@@ -320,11 +330,22 @@ namespace Atividade_M2
                         }
                     }  else
                     {
+                        Console.Clear();
                         Console.WriteLine("Opção Invalida !");
                         dolarParaReal();
                     }
 
                 }
+                
+/*
+ * ----------------------------PASSAR PARA UMA CLASSE--------CONVERTE MOEDA---------------------------------------------
+ */
+
+            static void realParaDolar() //TODO: IMPLEMENTAR O METODO
+            {
+                
+            }
+
                   
                 
             inicio();

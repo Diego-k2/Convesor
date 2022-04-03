@@ -1,22 +1,23 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
-//TODO: IMPLEMENTAR RESTO DOS METODOS
-//TODO: TENTAR REDUZIR O NUMERO DE METODOS 
 namespace Atividade_M2
 {
     class Program
     {
         static void Main(string[] args)
         {
-            
+
+            inicio();
+
             static void inicio() //Função MENU PRINCIPAL
             {
                 Console.WriteLine("Bem-vindo ao nosso conversor");
                 Console.WriteLine("Selecione a opção desejada: \n 1)-Conversor de medidas \n 2)-Conversor de moedas" +
-                                  " \n 3)-Conversor de Peso ");
+                                  " \n 3)-Conversor de Peso \n 4)-Sair ");
 
                 int opInicial = Int32.Parse(Console.ReadLine());
-                
+
                 if (opInicial >= 1 && opInicial <= 3)
                 {
                     switch (opInicial)
@@ -29,20 +30,32 @@ namespace Atividade_M2
                             Console.Clear();
                             converteMoeda();
                             break;
-                        
+                        case 3: //CONVERSOR DE PESO
+                            Console.Clear();
+                            convertePeso();
+                            break;
+                        case 4: //Sair
+                            Console.WriteLine("Saindo do sistema  !");
+                            break;
+                        default:
+                            Console.Clear();
+                            Console.WriteLine("Opção Invalida !");
+                            inicio();
+                            break;
                     }
-                } else
+                }
+                else
                 {
                     Console.Clear();
                     Console.WriteLine("OPÇÃO INVÁLIDA! \n");
                     inicio();
                 }
-            } 
+            }
 
 /*
 * -----------------------------------(CONVERSOR DE MEDIDA)-------------------------------------------------
 */
-            
+
             static void converteMedida() //Função Conversora de Medidas
             {
                 Console.WriteLine("Você selecionou o conversor de medidas:");
@@ -66,11 +79,11 @@ namespace Atividade_M2
                             inicio();
                             break;
                     }
-                } 
+                }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("OPÇÃO INVÁLIDA ! \n"); 
+                    Console.WriteLine("OPÇÃO INVÁLIDA ! \n");
                     converteMedida();
                 }
             }
@@ -78,7 +91,7 @@ namespace Atividade_M2
 /*
 * ----------------------------------PASSAR PARA UMA CLASSE--(CONVERSOR MEDIDA)-----------------------------
 */
-            
+
             static void volumetrica()
             {
                 Console.WriteLine("Conversões volumetricas");
@@ -89,12 +102,15 @@ namespace Atividade_M2
                 switch (optVolumetrica)
                 {
                     case 1: //LITRO PARA MILILITRO
+                        Console.Clear();
                         litroParaMilitro();
                         break;
                     case 2:
+                        Console.Clear();
                         militroParaLitro();
                         break;
                     case 3:
+                        Console.Clear();
                         converteMedida();
                         break;
                     default:
@@ -103,8 +119,8 @@ namespace Atividade_M2
                         volumetrica();
                         break;
                 }
-                
-                
+
+
             }
 
             static void litroParaMilitro()
@@ -114,22 +130,24 @@ namespace Atividade_M2
                 double medida = Double.Parse(Console.ReadLine());
                 if (medida > 0)
                 {
-                    double calculo = medida * 1000;
-                    Console.WriteLine("O valor de " + medida + "L em ml é: " + calculo + " \n");
-                    //SAIR DO APLICATIVO
-                    Console.WriteLine("Deseja Continuar ? \n 1)-Sim \n 2)-Não");
-                    int opSair = Int32.Parse(Console.ReadLine());
-                    if (opSair == 1)
-                    {
-                        Console.Clear();
-                        litroParaMilitro();
-                    }
-                }
+                    Console.WriteLine(calculoMegaParaMili(medida));
+                } 
                 else
                 {
                     Console.Clear();
                     Console.WriteLine("Você Digitou um valor invalido !");
-                    litroParaMilitro();
+                    metroCentimetro();
+                }
+                
+                if (sair())
+                {
+                    Console.Clear();
+                    realParaDolar();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Saindo do sistema......");
                 }
 
             }
@@ -139,33 +157,34 @@ namespace Atividade_M2
                 Console.WriteLine("Militro para Litro");
                 Console.WriteLine("Digite o valor em militros");
                 double medida = Double.Parse(Console.ReadLine());
-                
+
                 if (medida > 0)
                 {
-                    double calculo = medida / 1000;
-                    Console.WriteLine("O valor de " + medida + "ml em L é: " + calculo + " \n");
-                    //SAIR DO APLICATIVO
-                    Console.WriteLine("Deseja Continuar ? \n 1)-Sim \n 2)-Não");
-                    int opSair = Int32.Parse(Console.ReadLine());
-                    if (opSair == 1)
-                    {
-                        Console.Clear();
-                        litroParaMilitro();
-                    }
+                    Console.WriteLine(calculoMiliParaMega(medida));
                 }
                 else
                 {
                     Console.Clear();
                     Console.WriteLine("Você Digitou um valor invalido !");
-                    litroParaMilitro();
+                    centimetroMetro();
                 }
-                
+
+                if (sair())
+                {
+                    Console.Clear();
+                    realParaDolar();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Saindo do sistema......");
+                }
             }
-            
+
 /*
 * -----------------------------------PASSAR PARA UMA CLASSE--(CONVERSOR MEDIDA)----------------------------
 */
-            
+
             static void metrica() //METRICA 
             {
                 Console.WriteLine("Conversões metricas:");
@@ -176,12 +195,15 @@ namespace Atividade_M2
                 switch (optMetrica)
                 {
                     case 1: //m para cm 
+                        Console.Clear();
                         metroCentimetro();
                         break;
                     case 2:
+                        Console.Clear();
                         centimetroMetro();
                         break;
                     case 3:
+                        Console.Clear();
                         converteMedida();
                         break;
                     default:
@@ -190,10 +212,10 @@ namespace Atividade_M2
                         metrica();
                         break;
                 }
-                
-                
+
+
             }
-            
+
             static void metroCentimetro() //CONVERSOR METRO PARA CM
             {
                 Console.WriteLine("Conversão de Metro para Centimetro:");
@@ -202,23 +224,27 @@ namespace Atividade_M2
 
                 if (medida > 0)
                 {
-                    double calculo = medida * 1000;
-                    Console.WriteLine("O valor de " + medida + "M em CM é: " + calculo + "cm \n");
-                    //SAIR DO APLICATIVO
-                    Console.WriteLine("Deseja Continuar ? \n 1)-Sim \n 2)-Não");
-                    int opSair = Int32.Parse(Console.ReadLine());
-                    if (opSair == 1)
-                    {
-                        Console.Clear();
-                        metroCentimetro();
-                    }
-                }
+                    Console.WriteLine(calculoMegaParaMili(medida));
+                } 
                 else
                 {
                     Console.Clear();
                     Console.WriteLine("Você Digitou um valor invalido !");
                     metroCentimetro();
                 }
+                
+                
+                if (sair())
+                {
+                    Console.Clear();
+                    realParaDolar();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Saindo do sistema......");
+                }
+                
             }
 
             static void centimetroMetro() //CONVERSOR CM PARA METRO
@@ -229,16 +255,7 @@ namespace Atividade_M2
 
                 if (medida > 0)
                 {
-                    double calculo = medida / 1000;
-                    Console.WriteLine("O valor de " + medida + "cm em M é: " + calculo );
-                    //SAIR DO APLICATIVO
-                    Console.WriteLine("Deseja Continuar ? \n 1)-Sim \n 2)-Não");
-                    int opSair = Int32.Parse(Console.ReadLine());
-                    if (opSair == 1)
-                    {
-                        Console.Clear();
-                        centimetroMetro();
-                    }
+                    Console.WriteLine(calculoMiliParaMega(medida));
                 }
                 else
                 {
@@ -247,7 +264,18 @@ namespace Atividade_M2
                     centimetroMetro();
                 }
 
-            } 
+               
+                if (sair())
+                {
+                    Console.Clear();
+                    realParaDolar();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Saindo do sistema......");
+                }
+            }
 /*
 * ---------------------------------------CONVERTE MOEDA----------------------------------------------------
 */
@@ -262,7 +290,7 @@ namespace Atividade_M2
                 {
                     switch (opMed)
                     {
-                        case 1: 
+                        case 1:
                             Console.Clear();
                             dolar();
                             break;
@@ -270,109 +298,19 @@ namespace Atividade_M2
                             Console.WriteLine("OPÇÃO INVALIDA!");
                             break;
                     }
-                } else
+                }
+                else
                 {
                     Console.Clear();
-                    Console.WriteLine("OPÇÃO INVÁLIDA ! \n \n"); 
+                    Console.WriteLine("OPÇÃO INVÁLIDA ! \n \n");
                     converteMedida();
-                }              
-                
-/*
- * ----------------------------PASSAR PARA UMA CLASSE--------CONVERTE MOEDA---------------------------------------------
- */
-                static void dolar()
-                {
-                    Console.WriteLine("Conversões com Dolar:");
-                    Console.WriteLine("Selecione a conversão desejada \n 1)-Dolar para real" +
-                                      "\n 2)-Real para dolar \n 3)-Voltar menu anterior");
-                    int optDolar = Int32.Parse(Console.ReadLine());
-
-                    switch (optDolar)
-                    {
-                        case 1: 
-                            Console.Clear();
-                            dolarParaReal();
-                            break;
-                        case 2:
-                            Console.Clear();
-                            realParaDolar();
-                            break;
-                        case 3:
-                            dolar();
-                            break;
-                        default:
-                            Console.WriteLine("Opção inválida !");
-                            dolar();
-                            break;
-                    }
-                }
-
-            }
-                   
-            
- /*
- * ----------------------------PASSAR PARA UMA CLASSE--------CONVERTE MOEDA---------------------------------------------
- */
-                static void dolarParaReal()  
-                {
-                    Console.WriteLine("Você selecionou a opção de converter Dolar para real");
-                    Console.WriteLine("Digite o valor em Dolares");
-                    double valor = Double.Parse(Console.ReadLine());
-
-                    if (valor > 0)
-                    {
-                        double calculo = valor* 4.77;  //VALOR DOLAR EM 02/04/2022
-                        Console.WriteLine("O valor em Reiais é igual, R$" + calculo );
-                        //SAIR DO APLICATIVO
-                        Console.WriteLine("Deseja Continuar ? \n 1)-Sim \n 2)-Não");
-                        int opSair = Int32.Parse(Console.ReadLine());
-                        if (opSair == 1)
-                        {
-                            dolarParaReal();
-                        }
-                    }  else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("Opção Invalida !");
-                        dolarParaReal();
-                    }
-
-                }
-                
-/*
- * ----------------------------PASSAR PARA UMA CLASSE--------CONVERTE MOEDA---------------------------------------------
- */
-
-            static void realParaDolar()
-            {
-                Console.WriteLine("Você selecionou a opção de converter Real para Dolar");
-                Console.WriteLine("Digite o valor em Reais");
-                double valor = Double.Parse(Console.ReadLine());
-
-                if (valor > 0)
-                {
-                    double calculo = valor /  4.77;  //VALOR DOLAR EM 02/04/2022
-                    Console.WriteLine("O valor em Dolares é igual, USD$" + calculo );
-                    //SAIR DO APLICATIVO
-                    Console.WriteLine("Deseja Continuar ? \n 1)-Sim \n 2)-Não");
-                    int opSair = Int32.Parse(Console.ReadLine());
-                    if (opSair == 1)
-                    {
-                        realParaDolar();
-                    }
-                }  else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Opção Invalida !");
-                    realParaDolar();
                 }
             }
 
 /*
- * ----------------------------PASSAR PARA UMA CLASSE--------CONVERTE MOEDA---------------------------------------------
+ * ----------------------------DOLAR------------------------------------------------------------------------------------
  */
-
-            static void euro()//TODO: COMEÇAR A IMPLEMENTAR
+            static void dolar()
             {
                 Console.WriteLine("Conversões com Dolar:");
                 Console.WriteLine("Selecione a conversão desejada \n 1)-Dolar para real" +
@@ -381,25 +319,309 @@ namespace Atividade_M2
 
                 switch (optDolar)
                 {
-                    case 1: 
+                    case 1:
                         Console.Clear();
+                        dolarParaReal();
                         break;
                     case 2:
                         Console.Clear();
+                        realParaDolar();
                         break;
                     case 3:
-                        
+                        Console.Clear();
+                        converteMoeda();
                         break;
                     default:
-                        Console.WriteLine("Opção inválida !");
+                        Console.WriteLine("Opção inválida ! \n");
+                        dolar();
                         break;
                 }
             }
-            
 
-            inicio();
-            
+            static void dolarParaReal()
+            {
+                Console.WriteLine("Você selecionou a opção de converter Dolar para real");
+                Console.WriteLine("Digite o valor em Dolares");
+                double valor = Double.Parse(Console.ReadLine());
 
+                if (valor > 0)
+                {
+                    Console.WriteLine(calculoEstrangeiroParaReal(4.77, valor, "reais"));
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Opção Invalida !");
+                    dolarParaReal();
+                }
+
+                if (sair())
+                {
+                    Console.Clear();
+                    realParaDolar();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Saindo do sistema......");
+                }
+
+            }
+            
+            static void realParaDolar()
+            {
+                Console.WriteLine("Você selecionou a opção de converter Real para Dolar");
+                Console.WriteLine("Digite o valor em Reais");
+                double valor = Double.Parse(Console.ReadLine());
+                if (valor > 0)
+                {
+                    Console.WriteLine(calculoRealParaExtrangeiro(4.77, valor, "dolares"));
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Opção Inváilida !");
+                    realParaDolar();
+                }
+
+                if (sair())
+                {
+                    Console.Clear();
+                    realParaDolar();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Saindo do sistema......");
+                }
+            }
+/*
+ * ----------------------------PASSAR PARA UMA CLASSE--------CONVERTE MOEDA---------------------------------------------
+ */
+
+            static void euro()
+            {
+                Console.WriteLine("Conversões com Dolar:");
+                Console.WriteLine("Selecione a conversão desejada \n 1)-Dolar para real" +
+                                  "\n 2)-Real para dolar \n 3)-Voltar menu anterior");
+                int optDolar = Int32.Parse(Console.ReadLine());
+
+                switch (optDolar)
+                {
+                    case 1:
+                        Console.Clear();
+                        euroParaReal();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        realParaEuro();
+                        break;
+                    case 3:
+                        Console.Clear();
+                        converteMoeda();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Opção inválida ! \n");
+                        euro();
+                        break;
+                }
+            }
+
+            static void euroParaReal()
+            {
+                Console.WriteLine("Você selecionou a opção de converter Euro para real");
+                Console.WriteLine("Digite o valor em Euro");
+                double valor = Double.Parse(Console.ReadLine());
+
+                if (valor > 0)
+                {
+                    Console.WriteLine(calculoEstrangeiroParaReal(5.15, valor, "reais"));
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Opção Invalida !");
+                    dolarParaReal();
+                }
+                
+                
+                if (sair())
+                {
+                    Console.Clear();
+                    realParaDolar();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Saindo do sistema......");
+                }
+            }
+
+            static void realParaEuro()
+            {
+                Console.WriteLine("Você selecionou a opção de converter Real para Euro");
+                Console.WriteLine("Digite o valor em Reais");
+                double valor = Double.Parse(Console.ReadLine());
+                if (valor > 0)
+                {
+                    Console.WriteLine(calculoRealParaExtrangeiro(4.77, valor, "euros"));
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Opção Inváilida !");
+                    realParaDolar();
+                }
+
+                if (sair())
+                {
+                    Console.Clear();
+                    realParaDolar();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Saindo do sistema......");
+                }
+            }
+            
+/*
+ * ----------------------------CONVERTE PESO---------------------------------------------------------------------------------
+ */
+            static void convertePeso()
+            {
+                Console.WriteLine("Conversões volumetricas");
+                Console.WriteLine("Seleciona a conversão desejada \n 1)-Litro para militro \n 2)-Militro para litro" +
+                                  "\n 3)-Voltar ao menu anterior");
+                int optVolumetrica = Int32.Parse(Console.ReadLine());
+
+                switch (optVolumetrica)
+                {
+                    case 1: 
+                        Console.Clear();
+                        kiloParaGrama();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        gramaParaKilo();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Opção inválida ! \n");
+                        convertePeso();
+                        break;
+                }
+            }
+
+            static void kiloParaGrama()
+            {
+                Console.WriteLine("Kilo para Grama");
+                Console.WriteLine("Digite o valor em Kilos");
+                double medida = Double.Parse(Console.ReadLine());
+                if (medida > 0)
+                {
+                    Console.WriteLine(calculoMegaParaMili(medida));
+                } 
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Você Digitou um valor invalido !");
+                    metroCentimetro();
+                }
+                
+                if (sair())
+                {
+                    Console.Clear();
+                    realParaDolar();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Saindo do sistema......");
+                }
+            }
+
+            static void gramaParaKilo()
+            {
+                Console.WriteLine("Grama para Kilo");
+                Console.WriteLine("Digite o valor em Gramas");
+                double medida = Double.Parse(Console.ReadLine());
+
+                if (medida > 0)
+                {
+                    Console.WriteLine(calculoMiliParaMega(medida));
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Você Digitou um valor invalido !");
+                    centimetroMetro();
+                }
+
+                if (sair())
+                {
+                    Console.Clear();
+                    realParaDolar();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Saindo do sistema......");
+                }
+            }
+            
+            
+/*
+ * ----------------------------CALCULOS---------------------------------------------------------------------------------
+ */
+
+            static string calculoMegaParaMili(double medida)
+            {
+                double calculo = medida * 1000;
+                return "O valor convertido é " + calculo + "\n";
+            }
+
+            static string calculoMiliParaMega(double medida)
+            {
+                double calculo = medida / 1000;
+                return "O valor convertido é " + calculo + "\n";
+            }
+
+            static string calculoRealParaExtrangeiro(double cotação, double valor, string moeda)
+            {
+                if (valor > 0)
+                {
+                    double calculo = valor / cotação;
+                    return "O valor em " + moeda + " é igual, $" + calculo;
+                }
+
+                return "";
+            }
+            
+            static string calculoEstrangeiroParaReal(double cotação, double valor, string moeda)
+            {
+                if (valor > 0)
+                {
+                    double calculo = valor * cotação;
+                    return "O valor em " + moeda + " é igual, $" + calculo;
+                }
+
+                return "";
+            }
+
+            static bool sair()
+            {
+                Console.WriteLine("Deseja Continuar ? \n 1)-Sim \n 2)-Não");
+                int opSair = Int32.Parse(Console.ReadLine());
+                if (opSair == 1)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            
         }
     }
 }

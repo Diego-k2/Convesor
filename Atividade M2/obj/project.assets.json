@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\dego_\\.nuget\\packages\\": {}
+    "C:\\Users\\Aluno PROA\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Workspace\\Rider\\Atividade M2\\Atividade M2\\Atividade M2.csproj",
+      "projectUniqueName": "C:\\Users\\Aluno PROA\\Downloads\\Convesor-master\\Convesor-master\\Atividade M2\\Atividade M2.csproj",
       "projectName": "Atividade M2",
-      "projectPath": "C:\\Workspace\\Rider\\Atividade M2\\Atividade M2\\Atividade M2.csproj",
-      "packagesPath": "C:\\Users\\dego_\\.nuget\\packages\\",
-      "outputPath": "C:\\Workspace\\Rider\\Atividade M2\\Atividade M2\\obj\\",
+      "projectPath": "C:\\Users\\Aluno PROA\\Downloads\\Convesor-master\\Convesor-master\\Atividade M2\\Atividade M2.csproj",
+      "packagesPath": "C:\\Users\\Aluno PROA\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Aluno PROA\\Downloads\\Convesor-master\\Convesor-master\\Atividade M2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dego_\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Aluno PROA\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -53,12 +53,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[5.0.15, 5.0.15]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[5.0.0, 5.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.406\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

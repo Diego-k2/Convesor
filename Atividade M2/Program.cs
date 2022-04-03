@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 //TODO: IMPLEMENTAR RESTO DOS METODOS
 //TODO: TENTAR REDUZIR O NUMERO DE METODOS 
-//TODO: ACHAR BUG DE OPÇÃO INVALIDA 
 namespace Atividade_M2
 {
     class Program
@@ -197,7 +196,6 @@ namespace Atividade_M2
             
             static void metroCentimetro() //CONVERSOR METRO PARA CM
             {
-                Console.Clear();
                 Console.WriteLine("Conversão de Metro para Centimetro:");
                 Console.WriteLine("Digite o valor em Metros: ");
                 double medida = Double.Parse(Console.ReadLine());
@@ -211,11 +209,13 @@ namespace Atividade_M2
                     int opSair = Int32.Parse(Console.ReadLine());
                     if (opSair == 1)
                     {
+                        Console.Clear();
                         metroCentimetro();
                     }
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Você Digitou um valor invalido !");
                     metroCentimetro();
                 }
@@ -223,7 +223,6 @@ namespace Atividade_M2
 
             static void centimetroMetro() //CONVERSOR CM PARA METRO
             {
-                Console.Clear();
                 Console.WriteLine("Conversão Centimetro para Metro");
                 Console.WriteLine("Digite o valor em Centimetros: ");
                 double medida = Double.Parse(Console.ReadLine());
@@ -237,6 +236,7 @@ namespace Atividade_M2
                     int opSair = Int32.Parse(Console.ReadLine());
                     if (opSair == 1)
                     {
+                        Console.Clear();
                         centimetroMetro();
                     }
                 }
@@ -254,7 +254,6 @@ namespace Atividade_M2
 
             static void converteMoeda()
             {
-                Console.Clear();
                 Console.WriteLine("Você selecionou o conversor de moedas");
                 Console.WriteLine("Selecione a moeda que você deseja \n 1)-Dolar \n 2)-Euro " +
                                   "\n 3)-Voltar ao menu principal");
@@ -264,6 +263,7 @@ namespace Atividade_M2
                     switch (opMed)
                     {
                         case 1: 
+                            Console.Clear();
                             dolar();
                             break;
                         default:
@@ -282,7 +282,6 @@ namespace Atividade_M2
  */
                 static void dolar()
                 {
-                    Console.Clear();
                     Console.WriteLine("Conversões com Dolar:");
                     Console.WriteLine("Selecione a conversão desejada \n 1)-Dolar para real" +
                                       "\n 2)-Real para dolar \n 3)-Voltar menu anterior");
@@ -291,15 +290,19 @@ namespace Atividade_M2
                     switch (optDolar)
                     {
                         case 1: 
+                            Console.Clear();
                             dolarParaReal();
                             break;
                         case 2:
+                            Console.Clear();
+                            realParaDolar();
                             break;
                         case 3:
-                            converteMedida();
+                            dolar();
                             break;
                         default:
                             Console.WriteLine("Opção inválida !");
+                            dolar();
                             break;
                     }
                 }
@@ -312,14 +315,13 @@ namespace Atividade_M2
  */
                 static void dolarParaReal()  
                 {
-                    Console.Clear();
                     Console.WriteLine("Você selecionou a opção de converter Dolar para real");
                     Console.WriteLine("Digite o valor em Dolares");
                     double valor = Double.Parse(Console.ReadLine());
 
                     if (valor > 0)
                     {
-                        double calculo = valor /  4.77;  //VALOR DOLAR EM 02/04/2022
+                        double calculo = valor* 4.77;  //VALOR DOLAR EM 02/04/2022
                         Console.WriteLine("O valor em Reiais é igual, R$" + calculo );
                         //SAIR DO APLICATIVO
                         Console.WriteLine("Deseja Continuar ? \n 1)-Sim \n 2)-Não");
@@ -341,13 +343,60 @@ namespace Atividade_M2
  * ----------------------------PASSAR PARA UMA CLASSE--------CONVERTE MOEDA---------------------------------------------
  */
 
-            static void realParaDolar() //TODO: IMPLEMENTAR O METODO
+            static void realParaDolar()
             {
-                
+                Console.WriteLine("Você selecionou a opção de converter Real para Dolar");
+                Console.WriteLine("Digite o valor em Reais");
+                double valor = Double.Parse(Console.ReadLine());
+
+                if (valor > 0)
+                {
+                    double calculo = valor /  4.77;  //VALOR DOLAR EM 02/04/2022
+                    Console.WriteLine("O valor em Dolares é igual, USD$" + calculo );
+                    //SAIR DO APLICATIVO
+                    Console.WriteLine("Deseja Continuar ? \n 1)-Sim \n 2)-Não");
+                    int opSair = Int32.Parse(Console.ReadLine());
+                    if (opSair == 1)
+                    {
+                        realParaDolar();
+                    }
+                }  else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Opção Invalida !");
+                    realParaDolar();
+                }
             }
 
-                  
-                
+/*
+ * ----------------------------PASSAR PARA UMA CLASSE--------CONVERTE MOEDA---------------------------------------------
+ */
+
+            static void euro()//TODO: COMEÇAR A IMPLEMENTAR
+            {
+                Console.WriteLine("Conversões com Dolar:");
+                Console.WriteLine("Selecione a conversão desejada \n 1)-Dolar para real" +
+                                  "\n 2)-Real para dolar \n 3)-Voltar menu anterior");
+                int optDolar = Int32.Parse(Console.ReadLine());
+
+                switch (optDolar)
+                {
+                    case 1: 
+                        Console.Clear();
+                        break;
+                    case 2:
+                        Console.Clear();
+                        break;
+                    case 3:
+                        
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida !");
+                        break;
+                }
+            }
+            
+
             inicio();
             
 
